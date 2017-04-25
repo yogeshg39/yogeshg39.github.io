@@ -14,7 +14,7 @@ function getMobileOperatingSystem() {
     var ua=userAgent.toLowerCase();
     if (ua.indexOf("android") > -1) {
 
-        var playStoreLink="https://play.google.com/store/apps/details?id=com.perpule.customerapp&referral="+referralCode+"&user_agent="+userAgent;
+        var playStoreLink="market://details?id=com.perpule.customerapp&referral="+referralCode+"&user_agent="+userAgent;
         sendReferralData(playStoreLink,userAgent,referralCode);
     }
 
@@ -29,18 +29,19 @@ function getMobileOperatingSystem() {
 
 function sendReferralData(link,userAgent,referralCode)
 {
-    alert("Here");
-    /*$.post(
+    $.post(
         'http://30.productquery2014.appspot.com/resources/v1/referral/conversion',
          {"user_agent":userAgent,"referralCode":referralCode,"status":"NO","customerId":""}, 
          function(result) 
          { 
-            
-          
+             var iframe = document.createElement('iframe');
+              iframe.style.visibility = 'hidden';
+              
+              iframe.onload = function noapp() { window.location=link; };
+              document.body.appendChild(iframe);
+                        
          }
 
-    );*/
-        
-    window.location=link;
-           
+    );
+                   
 }
