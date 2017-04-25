@@ -71,8 +71,10 @@
 		var ua=userAgent.toLowerCase();
 		if (ua.indexOf("android") > -1) {
 
-		var playStoreLink="https://play.google.com/store/apps/details?id=com.perpule.customerapp&referral="+referralCode+"&user_agent="+userAgent;
-		sendReferralData(playStoreLink,userAgent,referralCode);
+			 window.location.href= "market://details?id=com.perpule.customerapp";
+
+		/*var playStoreLink="https://play.google.com/store/apps/details?id=com.perpule.customerapp&referral="+referralCode+"&user_agent="+userAgent;
+		sendReferralData(playStoreLink,userAgent,referralCode);*/
 		}
 
 		// iOS detection from: http://stackoverflow.com/a/9039885/177710
@@ -91,9 +93,7 @@
 		{"user_agent":userAgent,"referralCode":referralCode,"status":"NO","customerId":""}, 
 		function(result) 
 		{ 
-		 
-		 	 window.location.href =link;
-			
+		 	window.location.href =link;
 		            
 		}
 
