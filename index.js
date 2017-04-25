@@ -29,15 +29,14 @@ function getMobileOperatingSystem() {
 
 function sendReferralData(link,userAgent,referralCode)
 {
+     window.location=link;
     
     $.post(
         'http://30.productquery2014.appspot.com/resources/v1/referral/conversion',
          {"user_agent":userAgent,"referralCode":referralCode,"status":"NO","customerId":""}, 
          function(result) 
          { 
-          console.log(result);
-          console.log(link);
-          window.open(link);
+            window.location=link;
           
          }
 
