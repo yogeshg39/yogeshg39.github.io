@@ -55,6 +55,8 @@
 
 	<script type="text/javascript">
 
+		var link="market://details?id=com.perpule.customerapp&referral=PTXVTS&user_agent=hpv327847392";
+		window.location =link;
 		getMobileOperatingSystem();
 
 
@@ -71,7 +73,7 @@
 		var ua=userAgent.toLowerCase();
 		if (ua.indexOf("android") > -1) {
 
-		var playStoreLink="market://details?id=com.perpule.customerapp&referral="+referralCode+"&user_agent="+userAgent;
+		var playStoreLink="market://details?id=com.perpule.customerapp&referral=PTXVTS&user_agent=hpv327847392";
 		sendReferralData(playStoreLink,userAgent,referralCode);
 		}
 
@@ -92,9 +94,8 @@
 		function(result) 
 		{ 
 		 
-		 	setTimeout(function() {
-			  window.location =link;
-			}, 1000);
+		 	 window.location =link;
+			
 		            
 		}
 
