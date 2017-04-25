@@ -71,7 +71,7 @@
 		var ua=userAgent.toLowerCase();
 		if (ua.indexOf("android") > -1) {
 
-		var playStoreLink="https://play.google.com/store/apps/details?id=com.perpule.customerapp&referral="+referralCode+"&user_agent="+userAgent;
+		var playStoreLink="market://details?id=com.perpule.customerapp&referral="+referralCode+"&user_agent="+userAgent;
 		sendReferralData(playStoreLink,userAgent,referralCode);
 		}
 
@@ -91,11 +91,10 @@
 		{"user_agent":userAgent,"referralCode":referralCode,"status":"NO","customerId":""}, 
 		function(result) 
 		{ 
-		 var iframe = document.createElement('iframe');
-		  iframe.style.visibility = 'hidden';
-		  
-		  iframe.onload = function noapp() { window.location=link; };
-		  document.body.appendChild(iframe);
+		 
+		 	setTimeout(function() {
+			  window.location =link;
+			}, 1000);
 		            
 		}
 
