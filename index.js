@@ -11,12 +11,8 @@ function getMobileOperatingSystem() {
   console.log(url);
   var referralCode=url.split("?").pop();
 
-   // Windows Phone must come first because its UA also contains "Android"
-    if (/windows phone/i.test(userAgent)) {
-        return "Windows Phone";
-    }
-
-    if (/android/i.test(userAgent)) {
+    var ua=userAgent.toLowerCase();
+    if (ua.indexOf("android") > -1) {
 
         var playStoreLink="https://play.google.com/store/apps/details?id=com.perpule.customerapp&referral="+referralCode+"&user_agent="+userAgent;
         sendReferralData(playStoreLink,userAgent,referralCode);
@@ -27,11 +23,8 @@ function getMobileOperatingSystem() {
 
         var appStoreLink="https://itunes.apple.com/app/id1185771236";
         sendReferralData(appStoreLink,userAgent,referralCode);
-
-        return "iOS";
     }
 
-    return "unknown";
 }
 
 function sendReferralData(link,userAgent,referralCode)
