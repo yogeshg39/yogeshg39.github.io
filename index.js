@@ -37,7 +37,7 @@ function sendReferralData(link,userAgent,referralCode)
          { 
           console.log(result);
           console.log(link);
-          window.location.href=link;
+          window.location=link;
           
          }
 
