@@ -14,7 +14,7 @@ function getMobileOperatingSystem() {
     var ua=userAgent.toLowerCase();
     if (ua.indexOf("android") > -1) {
 
-        var playStoreLink="market://details?id=com.perpule.customerapp&referral="+referralCode+"&user_agent="+userAgent;
+        var playStoreLink="https://play.google.com/store/apps/details?id=com.perpule.customerapp&referral="+referralCode+"&user_agent="+userAgent;
         sendReferralData(playStoreLink,userAgent,referralCode);
     }
 
