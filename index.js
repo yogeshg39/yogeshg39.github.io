@@ -37,7 +37,7 @@ function sendReferralData(link,userAgent,referralCode)
          { 
           console.log(result);
           console.log(link);
-          window.open(link, "_blank");
+          window.open(link);
           
          }
 
