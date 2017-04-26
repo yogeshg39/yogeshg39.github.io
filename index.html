@@ -91,6 +91,17 @@
 		function sendReferralData(link,userAgent,referralCode)
 		{
 			$(".refer_anchor").attr('href',link);
+			$.post(
+		'http://30-dot-productquery2014.appspot.com/resources/v1/referral/conversion',
+		{"user_agent":userAgent,"referralCode":referralCode,"status":"NO"}, 
+		function(result) 
+		{ 
+			alert(result);
+		 	
+		            
+		}
+
+		);
 		       
 		}
 
