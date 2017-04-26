@@ -54,8 +54,13 @@
 	</script>
 
 	<script type="text/javascript">
+	var url= window.location.href;
+	var referralCode=url.split("?").pop();
 	$(window).load(function(){
-		getMobileOperatingSystem();
+		
+		if(referralCode!=null){
+			getMobileOperatingSystem();
+		}	
 	});
 
 		function getMobileOperatingSystem() {
@@ -63,33 +68,26 @@
 
 		console.log(userAgent);
 
-		var url= window.location.href;
-
-		console.log(url);
-		var referralCode=url.split("?").pop();
-
 		var ua=userAgent.toLowerCase();
 		if (ua.indexOf("android") > -1) {
 
 			 /*window.location.href= "https://play.google.com/store/apps/details?id=com.perpule.customerapp&referrer=tracking_id%3D123456789";*/
 
-		var playStoreLink="market://details?id=com.perpule.customerapp&referrer=3248Hgt";
+		var playStoreLink="market://details?id=com.perpule.customerapp&referral="+referralCode+"&user_agent="+user_agent";
 		sendReferralData(playStoreLink,userAgent,referralCode);
 		}
 
 		// iOS detection from: http://stackoverflow.com/a/9039885/177710s
-		if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+		/*if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
 
 		var appStoreLink="https://itunes.apple.com/app/id1185771236";
 		sendReferralData(appStoreLink,userAgent,referralCode);
-		}
+		}*/
 
 		}
 
 		function sendReferralData(link,userAgent,referralCode)
 		{
-			alert(link);
-			console.log($(".refer_anchor"));
 			$(".refer_anchor").attr('href',link);
 		       
 		}
