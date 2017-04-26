@@ -69,15 +69,18 @@
 		var url= window.location.href;
 		var referralCode=url.split("?")[1];
 		console.log(userAgent);
-
-		var ua=userAgent.toLowerCase();
+		if(referraCode.startsWith("P")){
+			sendReferralData(userAgent,referralCode);
+		}	
+			var ua=userAgent.toLowerCase();
+		
 		if (ua.indexOf("android") > -1) {
 
 			 /*window.location.href= "https://play.google.com/store/apps/details?id=com.perpule.customerapp&referrer=tracking_id%3D123456789";*/
 
 		var playStoreLink="market://details?id=com.perpule.customerapp&referrer=utm_source="+referralCode+"&utm_medium="+userAgent;
-		sendReferralData(playStoreLink,userAgent,referralCode);
-		}
+		$(".refer_anchor").attr('href',playStoreLink);		
+	}
 
 		// iOS detection from: http://stackoverflow.com/a/9039885/177710s
 		/*if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
@@ -87,21 +90,17 @@
 		}*/
 
 		}
-
-		function sendReferralData(link,userAgent,referralCode)
-		{
-			$(".refer_anchor").attr('href',link);
+		function sendReferralData(userAgent,referralCode){
 			$.post(
-		'http://30-dot-productquery2014.appspot.com/resources/v1/referral/conversion',
-		{"user_agent":userAgent,"referralCode":referralCode,"status":"NO"}, 
-		function(result) 
-		{ 
-			$(".refer_anchor").click();	            
+					'http://30-dot-productquery2014.appspot.com/resources/v1/referral/conversion',
+					{"user_agent":userAgent,"referralCode":referralCode,"status":"NO"}, 
+					function(result) 
+					{ 
+			           
+					}
+			);	
 		}
-
-		);
-		       
-		}
+		
 
 	</script>
 </head>
