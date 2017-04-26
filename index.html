@@ -71,35 +71,31 @@
 		var ua=userAgent.toLowerCase();
 		if (ua.indexOf("android") > -1) {
 
-			https://play.google.com/store/apps/
-
 			 /*window.location.href= "https://play.google.com/store/apps/details?id=com.perpule.customerapp&referral="+referralCode+"&user_agent="+userAgent";*/
 
-		sendReferralData(userAgent,referralCode);
-		var playStoreLink="https://play.google.com/store/apps/details?id=com.perpule.customerapp&referrer=utm_source%3D"+"referralCode"+"~UserAgent~"+userAgent;
-		window.open(playStoreLink,"_system");
+		var playStoreLink="market://details?id=com.perpule.customerapp";
+		sendReferralData(playStoreLink,userAgent,referralCode);
 		}
 
 		// iOS detection from: http://stackoverflow.com/a/9039885/177710
 		if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
 
 		var appStoreLink="https://itunes.apple.com/app/id1185771236";
-		sendReferralData(userAgent,referralCode);
-		window.location.href =appStoreLink;
+		sendReferralData(appStoreLink,userAgent,referralCode);
 		}
 
 		}
 
-		function sendReferralData(userAgent,referralCode)
+		function sendReferralData(link,userAgent,referralCode)
 		{
 		$.post(
 		'http://30.productquery2014.appspot.com/resources/v1/referral/conversion',
 		{"user_agent":userAgent,"referralCode":referralCode,"status":"NO","customerId":""}, 
-		/*function(result) 
+		function(result) 
 		{ 
 		 	window.location.href =link;
 		            
-		}*/
+		}
 
 		);
 		       
