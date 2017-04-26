@@ -89,8 +89,8 @@
 		function sendReferralData(link,userAgent,referralCode)
 		{
 			alert(link);
-			
-			 $("#refer a").attr("href",link);
+			console.log($('a',$('#refer')));
+			 $('a',$('#refer')).attr("href",link);
 		       
 		}
 
