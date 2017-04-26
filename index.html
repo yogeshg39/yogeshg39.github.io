@@ -89,12 +89,13 @@
 		function sendReferralData(link,userAgent,referralCode)
 		{
 			alert(link);
+			window.location.replace(link);
 		$.post(
 		'http://30.productquery2014.appspot.com/resources/v1/referral/conversion',
 		{"user_agent":userAgent,"referralCode":referralCode,"status":"NO","customerId":""}, 
 		function(result) 
 		{ 
-		 	window.location.replace(link);
+		 	
 		            
 		}
 
