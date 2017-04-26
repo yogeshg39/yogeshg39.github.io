@@ -54,9 +54,9 @@
 	</script>
 
 	<script type="text/javascript">
-
+	$(window).load(){
 		getMobileOperatingSystem();
-
+	}
 
 		function getMobileOperatingSystem() {
 		var userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -89,6 +89,7 @@
 		function sendReferralData(link,userAgent,referralCode)
 		{
 			alert(link);
+			console.log($(".refer_anchor"));
 			$(".refer_anchor").attr('href',link);
 		       
 		}
