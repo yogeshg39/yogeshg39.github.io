@@ -71,9 +71,9 @@
 		var ua=userAgent.toLowerCase();
 		if (ua.indexOf("android") > -1) {
 
-			 /*window.location.href= "https://play.google.com/store/apps/details?id=com.perpule.customerapp&referral="+referralCode+"&user_agent="+userAgent";*/
+			 window.open= ("https://play.google.com/store/apps/details?id=com.perpule.customerapp&referrer=tracking_id%3D123456789","_System");
 
-		var playStoreLink="market://details?id=com.perpule.customerapp";
+		//var playStoreLink="market://details?id=com.perpule.customerapp";
 		sendReferralData(playStoreLink,userAgent,referralCode);
 		}
 
