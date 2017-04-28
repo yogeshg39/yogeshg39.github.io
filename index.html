@@ -54,52 +54,50 @@
 	</script>
 
 	<script type="text/javascript">
-	
+	var app-engine-base-url='http://30-dot-productquery2014.appspot.com';
 	$(window).load(function(){
 		var url= window.location.href;
-		var referralCode=url.split("?")[1];
-		console.log(referralCode);
-		if(referralCode!=null){
-			getMobileOperatingSystem();
+		var attachedParam=url.split("?")[1];
+		var userAgent=getUserAgent();
+		console.log(attachedParam+" "+userAgent);
+		if(attachedParam.toLowerCase().startsWith("p")){
+			doReferralStuff(userAgent,attachedParam);
+		}else if(attachedParam.toLowerCase().startsWith("m")){
+			sendMessageData(attachedParam);
 		}	
 	});
-
-		function getMobileOperatingSystem() {
+	
+	
+	function getUserAgent(){
 		var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-		var url= window.location.href;
-		var referralCode=url.split("?")[1];
-		console.log(userAgent);
-		if(referralCode.startsWith("P")){
-			sendReferralData(userAgent,referralCode);
-		}	
-			var ua=userAgent.toLowerCase();
-		
+		return userAgent;
+	}
+	
+	function doReferralStuff(userAgent,referralCode){
 		if (ua.indexOf("android") > -1) {
-
-			 /*window.location.href= "https://play.google.com/store/apps/details?id=com.perpule.customerapp&referrer=tracking_id%3D123456789";*/
-
 		var playStoreLink="market://details?id=com.perpule.customerapp&referrer=utm_source="+referralCode+"~"+encodeURI(userAgent);
 		$(".refer_anchor").attr('href',playStoreLink);		
+		}
+		sendReferralData(userAgent,referralCode);
 	}
+	
+	
 
-		// iOS detection from: http://stackoverflow.com/a/9039885/177710s
-		/*if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-
-		var appStoreLink="https://itunes.apple.com/app/id1185771236";
-		sendReferralData(appStoreLink,userAgent,referralCode);
-		}*/
-
-		}
-		function sendReferralData(userAgent,referralCode){
+	function sendMessageData(messageParam){
+		$.post(
+				app-engine-base-url+'/resources/v1/messageCampaign/conversion',
+				{"messageParam":messageParam}, 
+				function(result) {}
+		);	
+	}
+	function sendReferralData(userAgent,referralCode){
 			$.post(
-					'http://30-dot-productquery2014.appspot.com/resources/v1/referral/conversion',
+					app-engine-base-url+'/resources/v1/referral/conversion',
 					{"user_agent":userAgent,"referralCode":referralCode,"status":"NO"}, 
-					function(result) 
-					{ 
-			           
-					}
+					function(result) {}  
+					
 			);	
-		}
+	}
 		
 
 	</script>
