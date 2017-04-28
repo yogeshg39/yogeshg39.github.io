@@ -54,7 +54,7 @@
 	</script>
 
 	<script type="text/javascript">
-	var app-engine-base-url='http://30-dot-productquery2014.appspot.com';
+	var app_engine_base_url='http://30-dot-productquery2014.appspot.com';
 	$(window).load(function(){
 		var url= window.location.href;
 		var attachedParam=url.split("?")[1];
@@ -85,14 +85,14 @@
 
 	function sendMessageData(messageParam){
 		$.post(
-				app-engine-base-url+'/resources/v1/messageCampaign/conversion',
+				app_engine_base_url+'/resources/v1/messageCampaign/conversion',
 				{"messageParam":messageParam}, 
 				function(result) {}
 		);	
 	}
 	function sendReferralData(userAgent,referralCode){
 			$.post(
-					app-engine-base-url+'/resources/v1/referral/conversion',
+					app_engine_base_url+'/resources/v1/referral/conversion',
 					{"user_agent":userAgent,"referralCode":referralCode,"status":"NO"}, 
 					function(result) {}  
 					
