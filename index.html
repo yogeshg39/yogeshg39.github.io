@@ -74,6 +74,7 @@
 	}
 	
 	function doReferralStuff(userAgent,referralCode){
+		var ua=userAgent.toLowerCase();
 		if (ua.indexOf("android") > -1) {
 		var playStoreLink="market://details?id=com.perpule.customerapp&referrer=utm_source="+referralCode+"~"+encodeURI(userAgent);
 		$(".refer_anchor").attr('href',playStoreLink);		
