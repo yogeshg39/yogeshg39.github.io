@@ -59,6 +59,8 @@
 		var url= window.location.href;
 		var attachedParam=url.split("?")[1];
 		var userAgent=getUserAgent();
+		if(attachedParam==null)
+			return;
 		console.log(attachedParam+" "+userAgent);
 		if(attachedParam.toLowerCase().startsWith("p")){
 			doReferralStuff(userAgent,attachedParam);
