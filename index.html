@@ -62,7 +62,7 @@
 		if(attachedParam==null)
 			return;
 		console.log(attachedParam+" "+userAgent);
-		if(attachedParam.toLowerCase().startsWith("appredirect"){
+		if(attachedParam.toLowerCase().startsWith("appredirect")){
 			doRedirectoApp(userAgent,attachedParam);
 		}else if(attachedParam.toLowerCase().startsWith("p")){
 			doReferralStuff(userAgent,attachedParam);
@@ -83,7 +83,7 @@
 		// body...
 		var ua=userAgent.toLowerCase();
 		if (ua.indexOf("android") > -1) {
-		var appLink="intent://open/#Intent;scheme=perpule;package=com.perpule.customerapp;";
+		var appLink="intent://open/#Intent;scheme=perpule;package=com.perpule.customerapp;end;";
 		$(".android_anchor").attr('href',appLink);		
 		}	
 	}
