@@ -83,10 +83,10 @@
 		// body...
 		var ua=userAgent.toLowerCase();
 		if (ua.indexOf("android") > -1) {
-		var appLink="intent://open/#Intent;scheme=perpule;package=com.perpule.customerapp;end;";
+		var appLink="intent://perpule/#Intent;scheme=open;package=com.perpule.customerapp;end;";
 		console.log("appLink")
 		$(".android_anchor").attr('href',appLink);
-		$(".android_anchor").click(function(){$(".android_anchor").attr('href',"intent://open/#Intent;scheme=perpule;package=com.perpule.customerapp;end;")}) ;
+		$(".android_anchor").click(function(){$(".android_anchor").attr('href',"intent://perpule/#Intent;scheme=open;package=com.perpule.customerapp;end;")}) ;
 		//$(".android_anchor").attr('href',appLink);		
 		}	
 		console.log("appredirected to app link")
