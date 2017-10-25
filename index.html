@@ -54,23 +54,42 @@
 	</script>
 
 	<script type="text/javascript">
-	var app_engine_base_url='http://30-dot-productquery2014.appspot.com';
+	var app_engine_base_url='http://perpule-1248.appspot.com';
 	$(window).load(function(){
 		var url= window.location.href;
 		var attachedParam=url.split("?")[1];
 		var userAgent=getUserAgent();
+		if(attachedParam==null)
+			return;
 		console.log(attachedParam+" "+userAgent);
-		if(attachedParam.toLowerCase().startsWith("p")){
+		if(attachedParam.toLowerCase().startsWith("appredirect")){
+			doRedirectoApp(userAgent,attachedParam);
+		}else if(attachedParam.toLowerCase().startsWith("p")){
 			doReferralStuff(userAgent,attachedParam);
 		}else if(attachedParam.toLowerCase().startsWith("m")){
 			doMessageCampaignStuff(userAgent,attachedParam);
-		}	
+		}else if(attachedParam.toUpperCase()=="HYPMSG"){
+			sendReferralData(userAgent,"HYPMSG");
+		}
 	});
 	
 	
 	function getUserAgent(){
 		var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 		return userAgent;
+	}
+
+	function doRedirectoApp(userAgent,path) {
+		// body...
+		var ua=userAgent.toLowerCase();
+		if (ua.indexOf("android") > -1) {
+		var appLink="intent://perpule/#Intent;scheme=open;package=com.perpule.customerapp;end;";
+		console.log("appLink")
+		$(".android_anchor").attr('href',appLink);
+		$(".android_anchor").click(function(){$(".android_anchor").attr('href',"intent://perpule/#Intent;scheme=open;package=com.perpule.customerapp;end;")}) ;
+		//$(".android_anchor").attr('href',appLink);		
+		}	
+		console.log("appredirected to app link")
 	}
 	
 	function doReferralStuff(userAgent,referralCode){
