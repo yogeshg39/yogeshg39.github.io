@@ -119,26 +119,12 @@
 	}
 	function sendReferralData(userAgent,referralCode){
 			$.post(
-<<<<<<< HEAD
-		'http://perpule-1248.appspot.com/resources/v1/referral/conversion',
-		{"user_agent":userAgent,"referralCode":referralCode,"status":"NO"}, 
-		function(result) 
-		{ 
-			$(".refer_anchor").click();	            
-		}
-
-		);
-		       
-		}
-=======
 					app_engine_base_url+'/resources/v1/referral/conversion',
 					{"user_agent":userAgent,"referralCode":referralCode,"status":"NO"}, 
 					function(result) {}  
 					
 			);	
 	}
-		
->>>>>>> 2613d1184f6471a5899257b2b3dba559fd9cc6a5
 
 	</script>
 </head>
