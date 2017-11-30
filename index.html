@@ -62,15 +62,25 @@
 		if(attachedParam==null)
 			return;
 		console.log(attachedParam+" "+userAgent);
-		if(attachedParam.toLowerCase().startsWith("appredirect")){
+		
+		if(attachedParam.includes("appredirect")){
+			
 			doRedirectoApp(userAgent,attachedParam);
 		}else if(attachedParam.toLowerCase().startsWith("p")){
+			
 			doReferralStuff(userAgent,attachedParam);
 		}else if(attachedParam.toLowerCase().startsWith("m")){
+			
 			doMessageCampaignStuff(userAgent,attachedParam);
 		}else if(attachedParam.toUpperCase()=="HYPMSG"){
+			
 			sendReferralData(userAgent,"HYPMSG");
+		}else if(attachedParam.includes("conversionType")){
+			doRedirectoAppWithConversion(userAgent,attachedParam);
+		}else if(attachedParam.includes("appRedirectWithConversion")){
+			doRedirectoAppWithConversion(userAgent,attachedParam);
 		}
+		
 	});
 	
 	
@@ -82,14 +92,52 @@
 	function doRedirectoApp(userAgent,path) {
 		// body...
 		var ua=userAgent.toLowerCase();
+		console.log(path);
+		
+		// Path will be target page to be opened
 		if (ua.indexOf("android") > -1) {
-		var appLink="intent://perpule/#Intent;scheme=open;package=com.perpule.customerapp;end;";
-		console.log("appLink")
-		$(".android_anchor").attr('href',appLink);
-		$(".android_anchor").click(function(){$(".android_anchor").attr('href',"intent://perpule/#Intent;scheme=open;package=com.perpule.customerapp;end;")}) ;
-		//$(".android_anchor").attr('href',appLink);		
+		var appLink="intent://perpule/"+path+"#Intent;scheme=open;package=com.perpule.customerapp;end;";
+		console.log(appLink);
+		var playStoreLink="market://details?id=com.perpule.customerapp";
+		window.location.href = appLink;
+		//$(".android_anchor").attr('href',appLink);
+		//$(".android_anchor").click(function(){$(".android_anchor").attr('href',"intent://perpule/#Intent;scheme=open;package=com.perpule.customerapp;end;")}) ;
+		//$(".android_anchor").attr('href',appLink);
+			setTimeout(function(){
+				window.location.href=playStoreLink;
+			},2000);
 		}	
-		console.log("appredirected to app link")
+		//console.log("appredirected to app link")
+	}
+	
+	function doRedirectoAppWithConversion(userAgent,path) {
+		// body...
+		var ua=userAgent.toLowerCase();
+		console.log(path);
+		
+		var conversion_param = path.split("&&")[1].split("=")[1];
+		// Path will be target page to be opened
+		if(conversion_param.startsWith("M")){
+			var target_path_android = "pp_sms";
+		}else if(conversion_param.startsWith("E")){
+			var target_path_android = "pp_email";
+		}
+		if (ua.indexOf("android") > -1) {
+		var appLink="intent://perpule/"+target_path_android+"?id=123#Intent;scheme=open;package=com.perpule.customerapp;end;";
+		console.log("target path to open ",target_path_android);
+		console.log("final app link ",appLink);
+		console.log(conversion_param);
+		var playStoreLink="market://details?id=com.perpule.customerapp";
+		if(conversion_param.startsWith("M") || conversion_param.startsWith("E"))
+			sendMessageData(conversion_param);
+		window.location.href = appLink;
+		
+			  setTimeout(function(){
+				window.location.href=playStoreLink;
+			},2000);   
+		}	
+		
+		
 	}
 	
 	function doReferralStuff(userAgent,referralCode){
@@ -111,6 +159,7 @@
 	
 
 	function sendMessageData(messageParam){
+		console.log("Message Pram ",messageParam);
 		$.post(
 				app_engine_base_url+'/resources/v1/messageCampaign/conversion',
 				{"messageParam":messageParam}, 
