@@ -1,0 +1,16 @@
+.img-responsive{
+	
+	margin:auto;
+	
+}
+#footer{
+	margin:20px 0px 0px;
+}
+
+@media only screen and (min-width: 768px) {
+	
+	.img-responsive{
+		max-width:50%;
+	}
+	
+}
