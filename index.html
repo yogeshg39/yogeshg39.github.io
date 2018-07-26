@@ -97,7 +97,7 @@
 		
 		// Path will be target page to be opened
 		if (ua.indexOf("android") > -1) {
-		var appLink="intent://perpule/"+path+"#Intent;scheme=open;package=com.perpule.customerapp;end;";
+		var appLink="open://perpule/"+path+"#Intent;scheme=open;package=com.perpule.customerapp;end;";
 		console.log(appLink);
 		var playStoreLink="market://details?id=com.perpule.customerapp";
 		window.location.href = appLink;
@@ -124,7 +124,7 @@
 			var target_path_android = "pp_email";
 		}
 		if (ua.indexOf("android") > -1) {
-		var appLink="intent://perpule/"+target_path_android+"?id=123#Intent;scheme=open;package=com.perpule.customerapp;end;";
+		var appLink="open://perpule/"+target_path_android+"?id=123#Intent;scheme=open;package=com.perpule.customerapp;end;";
 		console.log("target path to open ",target_path_android);
 		console.log("final app link ",appLink);
 		console.log(conversion_param);
